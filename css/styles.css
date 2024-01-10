@@ -1,0 +1,75 @@
+
+body {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+    margin: 0;
+    overflow: hidden;
+    
+}
+.background-container { /*derkoch.html*/
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    position: relative;
+    background: url('/TaPas-Kitchen/img/bg.jpg') no-repeat center center fixed;
+    background-size: cover;
+}
+
+.navbar {
+    height: 40px; 
+}
+.navbar-nav {
+        margin-left: auto;  
+}
+
+.navbar-nav .nav-item {
+        margin-right: 20px;  
+}
+
+.content {            /*index.html */
+    text-align: center;
+    color: rgb(186, 239, 198);
+    margin: 30px 230px 50px auto;
+    font-size: 1px;
+}
+
+#typewriter {
+    color: rgb(255, 255, 255);
+    font-size: 45px;
+    height: 50px;
+    margin-left: 640px;
+    margin-top: 20px;
+    
+}
+
+.additional-element {
+    background-color: rgba(248, 245, 245, 0.7);
+    padding: 20px;
+    border-radius: 10px;
+    text-align: center;
+    color: rgb(11, 11, 11);
+    width: 50%; 
+
+    margin: auto;
+}
+.abgerundeterBg {
+    background-color: rgba(255, 255, 255, 0.7);
+    border-radius: 25px;
+    padding: 10px;
+    margin-top: -20px;
+    margin-left: 500px ; /* Zentriert den Container */
+    width: 60%
+}
+footer {
+    background-color: #343b42;
+    color: white;
+    text-align: center;
+    padding: 1px 0;
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+}
+
+
+
