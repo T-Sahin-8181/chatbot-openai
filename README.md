@@ -25,3 +25,10 @@ das zeigt, dass der assistant die nachrichten verarbeitet.
 
 ## github befehle 
 git rm --cached $datei (um sachen von github zu löschen) 
+
+npm init -y
+npm install 
+npm install Express 
+npm install dotenv
+pip install openai
+npm install openai@^4.0.0

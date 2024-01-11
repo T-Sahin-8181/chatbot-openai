@@ -21,8 +21,9 @@
   
   /* Change background on mouse-over */
 .navbar a:hover {
-    background: #ddd;
+    background: #57505a87;
     color: black;
+    border-radius: 10px;
   }
   
   /* Main content */
@@ -38,7 +39,7 @@ body{
     height: 100vh;
     font-family: "poppins", sans-serif;
     position: relative;
-    background: url('/img/bgki.jpg') no-repeat center center fixed;
+    background: url('./bgki.jpg') no-repeat center center fixed;
     background-size: cover;            
 }
 
@@ -164,6 +165,7 @@ body{
 .sending-icon {
     position: absolute;
     right: 30px;
+    
 }
 
 .sending-icon .fa-paper-plane{
@@ -171,3 +173,4 @@ body{
     font-size: 2rem;
     cursor: pointer;
 }
+

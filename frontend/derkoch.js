@@ -5,14 +5,14 @@ const btnEl = document.querySelector(".fa-paper-plane");
 const cardBodyEl = document.querySelector(".card-body");
 
 let userMessage;
-const API_KEY = "FJQ6sIOrQPdNnUa5CVhSzs";
+const API_KEY = "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";
 const URL = "https://api.openai.com/v1/chat/completions";
 
 const chatGenerator = (robot) => {
     robot = robot.querySelector(".robot");
     const requestBody = {
         model: "gpt-3.5-turbo",
-        messages: [{"role": "system", "content": "You are a helpful assistant."}, {"role": "user", "content": userMessage}],
+        messages: [{"role": "system", "content": "Geben Sie einfach die Lebensmittel ein, die Sie in Ihrem Kühlschrank haben und entdecken Sie maßgeschneiderte Rezepte. Unsere intelligente Anwendung analysiert Ihre Eingaben und generiert speziell auf Ihre vorhandenen Zutaten zugeschnittene Rezeptvorschläge."}, {"role": "user", "content": userMessage}],
         temperature: 0.7
     };
 
@@ -48,7 +48,7 @@ function manageChat() {
     cardBodyEl.appendChild(messageEl(userMessage, "user"));
 
     setTimeout(() => {
-        const robotMessage = messageEl("Die antowrt wird erstellt, Augenblick bitte. . .", "chat-bot");
+        const robotMessage = messageEl("Die antowrt wird, Augenblick bitte. . .", "chat-bot");
         cardBodyEl.append(robotMessage);
         chatGenerator(robotMessage);
     }, 600);
