@@ -5,7 +5,7 @@ const btnEl = document.querySelector(".fa-paper-plane");
 const cardBodyEl = document.querySelector(".card-body");
 
 let userMessage;
-const API_KEY = "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";
+const API_KEY = "FJQ6sIOrQPdNnUa5CVhSzs";
 const URL = "https://api.openai.com/v1/chat/completions";
 
 const chatGenerator = (robot) => {
