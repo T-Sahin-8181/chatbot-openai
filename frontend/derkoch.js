@@ -5,37 +5,42 @@ const btnEl = document.querySelector(".fa-paper-plane");
 const cardBodyEl = document.querySelector(".card-body");
 
 let userMessage;
-const API_KEY = "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";
+// const API_KEY = 
 const URL = "https://api.openai.com/v1/chat/completions";
 
-const chatGenerator = (robot) => {
-    robot = robot.querySelector(".robot");
+
+"use strict";
+
+// ... (restlichen Code behalten)
+
+function chatGenerator(robot) {
+    userMessage = inputEl.value.trim();
+    if (!userMessage) return;
+    
+    // Die Nachricht an den Backend-Server
     const requestBody = {
-        model: "gpt-3.5-turbo",
-        messages: [{"role": "system", "content": "You are a helpful assistant."}, {"role": "user", "content": userMessage}],
-        temperature: 0.7
+        message: userMessage
     };
 
     const requestOption = {
         method: "POST",
         headers: {
-            "Content-Type": "application/json", // Hier wurde der Header korrigiert
-            Authorization: `Bearer ${API_KEY}`,
+            "Content-Type": "application/json",
         },
-        body: JSON.stringify(requestBody), // Body der Anfrage verwendet jetzt die korrekte Struktur und Variable
+        body: JSON.stringify(requestBody)
     };
-// fetch URL auf localhost geändert.
+
+    // Anfrage an den Backend-Server
     fetch("http://localhost:3000/chat", requestOption)
         .then((res) => res.json())
         .then((data) => {
-            robot.textContent = data.choices[0].message.content;
+            robot.textContent = data.reply;
         })
         .catch((error) => {
             console.error("Fehler beim Anfordern der Chat-Antwort:", error);
             robot.textContent = "Es gab leider ein Problem beim Laden der Antwort.";
         });
-};
-
+}
 
 
 // manage chat
@@ -48,10 +53,10 @@ function manageChat() {
     cardBodyEl.appendChild(messageEl(userMessage, "user"));
 
     setTimeout(() => {
-        const robotMessage = messageEl("Die antowrt wird, Augenblick bitte. . .", "chat-bot");
+        const robotMessage = messageEl("Augenblick bitte. . .", "chat-bot");
         cardBodyEl.append(robotMessage);
         chatGenerator(robotMessage);
-    }, 600);
+    }, 100);
 }
 
 

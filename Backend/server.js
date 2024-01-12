@@ -1,48 +1,40 @@
-const fs = require('fs');
-// Express importieren
 const express = require('express');
+const cors = require('cors');
+const { OpenAI } = require('openai');
 
-// Express initialisieren
+require('dotenv').config();
 const app = express();
-
-// Port definieren (optional)
 const port = 3000;
 
-// CORS (Cross Origin Ressource Sharing) aktivieren
-const cors = require('cors');
+// Nur einmal definieren und vor den Routen
+app.use(express.json());
+app.use(cors());
 
-//dotenv package initialisieren
-require('dotenv').config()
+// Initialisieren von openai mit dem API-Key aus der .env-Datei
+const openai = new OpenAI(process.env.OPENAI_API_KEY);
 
-
-// Debug-Ausgabe für Umgebung
-if (process.env.ENABLE_DEBUG == "TRUE") {
-    console.log("env:", process.env);
-}
-
-// Imprting and setting up the OpenAI client
-
-
-// CORS Options definieren
-var corsOptions = {
-    origin: '*',
-    optionsSuccessStatus: 200 // some legacy browsers (IE11, various SmartTVs) choke on 204
-}
-
-// Express mit Json Req/Res aktivieren
-app.use(express.json(), cors(corsOptions));
-
-console.log("env:", process.env);
-// GET Route um eine Liste aller Einträge zu erhalten
 app.post('/chat', (req, res) => {
-            res.json({ "chat": "chat"});
+    try {
+        const userMessage = req.body.message;
+
+        const response = openai.createCompletion({
+            model: "gpt-3.5-turbo",
+            prompt: userMessage,
+            max_tokens: 150,
+            temperature: 0.7,
+            top_p: 1,
+            frequency_penalty: 0,
+            presence_penalty: 0
+        });
+
+
+        res.json({ reply: response.data.choices[0].text });
+    } catch (error) {
+        console.error(error);
+        res.status(500).json({ error: 'Ein Fehler ist aufgetreten' });
+    }
 });
 
-
-
-
-
-// localhost listen port app 
 app.listen(port, () => {
-    console.log(`Example app listening at http://localhost:${port}`);
+    console.log(`Server läuft auf http://localhost:${port}`);
 });
