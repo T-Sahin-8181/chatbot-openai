@@ -12,7 +12,7 @@ const chatGenerator = (robot) => {
     robot = robot.querySelector(".robot");
     const requestBody = {
         model: "gpt-3.5-turbo",
-        messages: [{"role": "system", "content": "Geben Sie einfach die Lebensmittel ein, die Sie in Ihrem Kühlschrank haben und entdecken Sie maßgeschneiderte Rezepte. Unsere intelligente Anwendung analysiert Ihre Eingaben und generiert speziell auf Ihre vorhandenen Zutaten zugeschnittene Rezeptvorschläge."}, {"role": "user", "content": userMessage}],
+        messages: [{"role": "system", "content": "You are a helpful assistant."}, {"role": "user", "content": userMessage}],
         temperature: 0.7
     };
 
@@ -24,8 +24,8 @@ const chatGenerator = (robot) => {
         },
         body: JSON.stringify(requestBody), // Body der Anfrage verwendet jetzt die korrekte Struktur und Variable
     };
-
-    fetch(URL, requestOption)
+// fetch URL auf localhost geändert.
+    fetch("http://localhost:3000/chat", requestOption)
         .then((res) => res.json())
         .then((data) => {
             robot.textContent = data.choices[0].message.content;

@@ -1,0 +1,19 @@
+{
+  "name": "tapas-kitchen",
+  "version": "1.0.0",
+  "description": "installiere erst die umgebungs abhängingheiten \r  die sind im \"requirements.txt\"",
+  "main": "main.js",
+  "type": "module",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "bootstrap": "^5.3.2",
+    "dotenv": "^16.3.1",
+    "Express": "^3.0.1",
+    "openai": "^4.24.2"
+  },
+  "keywords": []
+}
