@@ -1,40 +1,41 @@
 const express = require('express');
 const cors = require('cors');
 const { OpenAI } = require('openai');
-
 require('dotenv').config();
-const app = express();
-const port = 3000;
 
-// Nur einmal definieren und vor den Routen
+const app = express();
 app.use(express.json());
 app.use(cors());
 
-// Initialisieren von openai mit dem API-Key aus der .env-Datei
+const port = 3000;
 const openai = new OpenAI(process.env.OPENAI_API_KEY);
 
-app.post('/chat', (req, res) => {
-    try {
-        const userMessage = req.body.message;
+app.post('/chat', async (req, res) => {
+  const userMessage = req.body.message;
 
-        const response = openai.createCompletion({
-            model: "gpt-3.5-turbo",
-            prompt: userMessage,
-            max_tokens: 150,
-            temperature: 0.7,
-            top_p: 1,
-            frequency_penalty: 0,
-            presence_penalty: 0
-        });
-
-
-        res.json({ reply: response.data.choices[0].text });
+    try{
+    const completion = await openai.chat.completions.create({
+        messages: [
+        {
+          role: "system",
+          content: "You are a helpful assistant designed to output JSON.",
+        },
+        { role: "user", content: "" +userMessage,},
+       
+         ],
+        model: "gpt-3.5-turbo-1106",
+        response_format: { type: "json_object" },
+    });
+    console.log(completion.choices[0].message.content);
+    
+    res.json({ reply: response.data.choices[0].text });
     } catch (error) {
-        console.error(error);
-        res.status(500).json({ error: 'Ein Fehler ist aufgetreten' });
+    console.error('OpenAI error:', error);
+    res.status(500).json({ error: 'Ein Fehler ist aufgetreten' });
     }
+   
 });
 
 app.listen(port, () => {
-    console.log(`Server läuft auf http://localhost:${port}`);
+  console.log(`Server is running on http://localhost:${port}`);
 });
