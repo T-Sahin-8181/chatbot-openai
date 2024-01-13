@@ -37,5 +37,5 @@ Webseite für einen Chatbot-Kochassistenten erstellt. Verwendung von JavaScript 
 
 3. [ Google fonts ](https://developers.google.com/fonts/docs/getting_started?hl=de) Website style
 
-4. [Favicon library](#https://www.domaintechnik.at/handbuch/favicon-generator.html#c23499) Icons for apps 
+4. [Favicon library ](#https://www.domaintechnik.at/handbuch/favicon-generator.de) Icons for apps 
 # [ OpenSource](#lizenz)
