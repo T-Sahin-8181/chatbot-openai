@@ -33,7 +33,9 @@ Webseite für einen Chatbot-Kochassistenten erstellt. Verwendung von JavaScript 
 
 
  ## Quellen:
- 1. [OpenAi documentation](https://platform.openai.com/docs/api-reference/making-requests)
+ 1. [OpenAi documentation](https://platform.openai.com/docs/api-reference/making-requests)  ChatGPT
 
-3. [ Google fonts ](https://developers.google.com/fonts/docs/getting_started?hl=de)
-4. [ OpenSource](#lizenz)
+3. [ Google fonts ](https://developers.google.com/fonts/docs/getting_started?hl=de) Website style
+
+4. [Favicon library](#https://www.domaintechnik.at/handbuch/favicon-generator.html#c23499) Icons for apps 
+# [ OpenSource](#lizenz)
