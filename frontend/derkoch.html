@@ -38,18 +38,19 @@
             </div> 
             <div class="card-footer">
                 <textarea 
-                ...
                 onkeypress="if(event.keyCode === 13) {event.preventDefault(); manageChat();}"
-                ...
+                
                 name="message" 
                 class="input-chat" 
                 id="" 
                 cols="10" 
                 rows="1" 
                 placeholder="schreibe deine zutaten......." 
+                onkeypress="if(event.keyCode === 13) {event.preventDefault(); manageChat();}"
                 ></textarea>                                            <!-- User Eingabefeld für die frage -->
-                <button onclick="manageChat();">ok</button>
+                
                 <div class="sending-icon">
+                    
                     <i class="fa-regular fa-paper-plane"></i>
                 </div>
             </div> 

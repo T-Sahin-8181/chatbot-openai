@@ -1,34 +1,39 @@
-# Tapa's - Kitchen (Koch-Assistent)
+### "OpenAI-Powered Chatbot for Websites: Seamless Frontend and     Backend Integration"
+#
+#
 
- ## pip install -r requirements.txt
 
- installiere erst die umgebungs abhängingheiten 
- die sind im "requirements.txt"
 
-füge eine weitere zeile in package.json  unter "main"  als 6. zeile -> ("type": "module",)
-führe anschließend npm install 
+# Tapa's - Kitchen (Koch-Assistent) 
+#
+#
+## English
+Created a website for a chatbot culinary assistant. Utilized JavaScript for the frontend, Express as the local server, and Node.js in the backend. The application is connected through a Fetch function to secure access to sensitive information such as the OpenAI key. A secure starter application is available on GitHub, providing a protected entry point for small developers. Best of luck in deploying and advancing the application.
 
-app.js zeile 1-20 
-OPEN_API_KEY= in ".env" einfügen und im terminal "$node app" starten es wird eine assistent generiert auf der openAI.com seite. diese kannst du unter assistenten finden. 
 
-in app.js! sollte wenn der "assistan RUN" (zeilen 44-49) ausgeführt wird, der status im terminal  "completed" anziegen. 
-das zeigt, dass der assistant die nachrichten verarbeitet. 
+## GERMAN
+Webseite für einen Chatbot-Kochassistenten erstellt. Verwendung von JavaScript für das Frontend, Express als lokaler Server und Node.js im Backend. Die Anwendung ist über eine Fetch-Funktion verbunden, um den Zugriff auf sensible Informationen wie den OpenAI-Schlüssel zu sichern. Auf GitHub steht eine sichere Startanwendung bereit, die kleinen Entwicklern einen geschützten Einstieg ermöglicht. Viel Erfolg beim Einsatz und der Weiterentwicklung der Anwendung.
+## 
+
+
+
+
+
+
+    
+    
+    "body-parser": "^1.20.2",
+    "cors": "^2.8.5",
+    "dotenv": "^16.3.1",
+    "express": "^4.18.2",
+    "node-fetch": "^2.7.0",
+    "openai": "^4.24.6"
+
+    
+
 
  ## Quellen:
  1. [OpenAi documentation](https://platform.openai.com/docs/api-reference/making-requests)
-2. [Web Design "cdnjs" ](https://cdnjs.com/libraries/font-awesome)
+
 3. [ Google fonts ](https://developers.google.com/fonts/docs/getting_started?hl=de)
-4. [ XX](#lizenz)
-
-
-
-
-## github befehle 
-git rm --cached $datei (um sachen von github zu löschen) 
-
-npm init -y
-npm install 
-npm install Express 
-npm install dotenv
-pip install openai
-npm install openai@^4.0.0
+4. [ OpenSource](#lizenz)
