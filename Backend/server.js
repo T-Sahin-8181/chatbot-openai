@@ -7,8 +7,9 @@ const app = express();
 app.use(express.json());
 app.use(cors());
 
-const role_content = process.env.role_content
+//const role_content = process.env.role_content
 const konfig_chat = process.env.konfig_chat;
+
 const port = process.env.PORT;
 const openai = new OpenAI(process.env.OPENAI_API_KEY);
 
@@ -21,7 +22,7 @@ app.post('/chat', async (req, res) => {
         messages: [
         {
           role: "system",
-          content: role_content
+          content: "asst_I5aXei7K7vhbP0ZcXNJa5d59",
         },
         { role: "user",
          content: konfig_chat +userMessage,},       
