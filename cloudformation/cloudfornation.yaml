@@ -1,0 +1,129 @@
+AWSTemplateFormatVersion: 2010-09-09
+Description: Base Tamplate chatbot-tapaskitchen V. 1.0.0.
+# Metadata: 
+
+# Parameters: 
+
+# Mappings: 
+
+# Conditions: 
+
+Resources: 
+  VPC:
+    Type: AWS::EC2::VPC
+    Properties:
+      CidrBlock: 10.0.0.0/16
+      EnableDnsSupport: true
+      Tags:
+        - Key: name
+          Value: chatbottapaskitchen
+          
+  PublicSubnet:
+    Type: AWS::EC2::Subnet
+    Properties:
+      AvailabilityZone: eu-central-1a
+      VpcId: !Ref VPC
+      CidrBlock: 10.0.0.0/24
+      MapPublicIpOnLaunch: true
+      Tags:
+        - Key: name
+          Value: chatbottapaskitchen
+
+  IGW:
+    Type: AWS::EC2::InternetGateway
+    Properties:   
+      Tags:
+        - Key: name
+          Value: chatbottapaskitchen
+
+  AttachGateway:
+    Type: AWS::EC2::VPCGatewayAttachment
+    Properties:
+      VpcId: !Ref VPC
+      InternetGatewayId: !Ref IGW
+
+  RouteTable:
+    Type: AWS::EC2::RouteTable
+    Properties:
+      VpcId: !Ref VPC
+      Tags:
+        - Key: name
+          Value: chatbottapaskitchen
+
+  routeTableAssocName1:
+    Type: AWS::EC2::SubnetRouteTableAssociation
+    Properties:
+      SubnetId: !Ref PublicSubnet
+      RouteTableId: !Ref RouteTable
+
+  PublicRoute:
+    Type: AWS::EC2::Route
+    DependsOn: AttachGateway
+    Properties:
+     RouteTableId: !Ref RouteTable
+     DestinationCidrBlock: 0.0.0.0/0
+     GatewayId: !Ref IGW    
+
+  SecurityGroup:
+    Type: AWS::EC2::SecurityGroup
+    Properties:
+      GroupName: securityGroup
+      GroupDescription: Allow http ssh
+      VpcId: !Ref VPC
+      SecurityGroupIngress:
+        - IpProtocol: tcp
+          FromPort: 3000
+          ToPort: 3000
+          CidrIp: 0.0.0.0/0
+        - IpProtocol: tcp
+          FromPort: 22
+          ToPort: 22
+          CidrIp: 0.0.0.0/0
+        
+      Tags:
+        - Key: name
+          Value: cloudformation
+
+  EC2Instance:
+    Type: AWS::EC2::Instance
+    Properties:
+      ImageId: ami-0fb820135757d28fd #Amazon Linux 2023 AMI 2023.2.20231016.0
+      InstanceType: t2.micro
+      Monitoring: false
+      SecurityGroupIds:
+        - !Ref SecurityGroup
+      SubnetId: !Ref PublicSubnet
+      UserData:
+        Fn::Base64: !Sub |
+		    #!/bin/bash
+			sudo yum update -y
+      npm init --safe
+			sudo yum install -y  openai body-parser cors dotenv node-fetch express unzip
+			# Create a directory for your Python code in /var
+			CODE_DIR="/CHATBOT-OPENAI/Backend"
+			sudo mkdir -p $CODE_DIR
+			# Download the Python code zip file from the S3 bucket
+			S3_URL="https://chatbottapaskitchen-data.s3.eu-central-1.amazonaws.com/backend.zip"
+			wget $S3_URL -O "$CODE_DIR/backend.zip"
+			# Unzip the code
+			cd $CODE_DIR
+			unzip backend.zip
+			# Install any Python dependencies required by your code (if applicable)
+			npm install -r $CODE_DIR/requirements.txt
+			# Run your main.py (replace with your specific Python code execution command)
+			nodemon server.js
+      
+  
+  s3Bucket:
+    Type: AWS::S3::Bucket
+    Properties:
+      BucketName: chatbottapaskitchen
+      Tags:
+        - Key: name
+          Value: chatbottapaskitchen
+          
+### OUTPUTS ###
+Outputs:
+  VPCid:
+    Description: the VPC id
+    Value: !Ref VPC
